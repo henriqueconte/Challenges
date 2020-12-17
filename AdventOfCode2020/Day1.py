@@ -5,27 +5,15 @@ for line in inputFile:
     line = line.split()
     inputList[line[0]] = True
 
-
 def findPair(goalSum, currentValue):
     if str(goalSum - intElement) in inputList:
         return goalSum - intElement
     else:
         return None
 
-
-
 ###########################################
 #                 PART 1                  #
 ###########################################
-
-# for element in inputList:
-#     intElement = int(element)
-
-#     if str(2020 - intElement) in inputList:
-#         print("Element A: ", intElement)
-#         print("Element B: ", 2020 - intElement)
-#         print("Mult of Element A and B: ", intElement * (2020 - intElement))  
-#         break   
 
 for element in inputList:
     intElement = int(element)
