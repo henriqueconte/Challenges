@@ -26,7 +26,7 @@ class Solution:
         
             except KeyError:
                 pass
-                
+                # [-9, -3, 1, 2, 4, 8, 8]
         for element in resultsSet:
             stringList = element.split(",")
             intList = [eval(i) for i in stringList]
