@@ -5,14 +5,18 @@
 #         self.next = None
 
 class Solution:
-    visitedNodes = []
     def hasCycle(self, head: Optional[ListNode]) -> bool:
         if not head:
             return False
-        while head.next:
-            self.visitedNodes.append(head)
+        fastPointer = head.next
+
+        while fastPointer:
+            if not fastPointer.next:
+                return False
             head = head.next
-            if head in self.visitedNodes:
+            
+            fastPointer = fastPointer.next.next
+            if head == fastPointer:
                 return True
 
         return False
