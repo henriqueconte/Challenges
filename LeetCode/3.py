@@ -1,39 +1,19 @@
-from operator import le
-from re import L
-
-
 class Solution:
-    def lengthOfLongestSubstring(self, s):
-        charSet = set()
-        longSubstringCount = 0
-        left = right = 0
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        leftPointer = 0
+        rightPointer = 0
+        maxSubstringCount = 0
+        lettersSet = set()
 
-        while (right < len(s)):
-            if s[right] in charSet:
-                if len(charSet) > longSubstringCount:
-                    longSubstringCount = len(charSet)
-                while s[left] != s[right]:
-                    charSet.remove(s[left])
-                    left += 1
-                charSet.remove(s[left])
-                left += 1
+        for letter in s:
+            if letter in lettersSet:
+                while letter != s[leftPointer]:
+                    lettersSet.remove(s[leftPointer])
+                    leftPointer += 1
+                leftPointer += 1
             else:
-                charSet.add(s[right])
-                right += 1
+                lettersSet.add(letter)
+                rightPointer += 1
+                maxSubstringCount = max(maxSubstringCount, len(lettersSet))
 
-
-        return max(longSubstringCount, len(charSet))
-        
-a = Solution()
-
-print(a.lengthOfLongestSubstring("pwwkew"))
-
-## Examples: 
-
-# p
-# pw
-# pww
-# w
-# wk
-# wke
-# wkekot
+        return maxSubstringCount
