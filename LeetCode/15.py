@@ -1,6 +1,7 @@
 class Solution:
     def threeSum(self, nums):
         resultList = []
+        tripletsSet = set()
         nums = sorted(nums) # O(n log n)
 
         for i in range(len(nums)): 
@@ -10,15 +11,15 @@ class Solution:
                 continue
             while left < right:
                 if nums[i] + nums[left] + nums[right] == 0:
-                    resultList.append([nums[i], nums[left], nums[right]])
+                    tripletsSet.add((nums[i], nums[left], nums[right]))
                     left += 1
-                    while left < right and nums[left] == nums[left - 1]:
-                        left += 1
                 elif nums[i] + nums[left] + nums[right] < 0:
                     left += 1
                 else:
                     right -= 1
 
+        for triplet in tripletsSet:
+            resultList.append([triplet[0], triplet[1], triplet[2]])
         return resultList
     
 solution = Solution()
