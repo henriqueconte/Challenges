@@ -3,34 +3,21 @@ import math
 class Solution:
     def evalRPN(self, tokens):
         OPERATORS = {"+", "-", "*", "/"}
+        result = int(tokens[0])
+        operandsStack = []
         if len(tokens) == 1:
-            return int(tokens[0])
+            return result
         
-        leftOp = 0
-        rightOp = 1
-        visited = [0 for i in range(len(tokens))]
-
-        for i in range(0, len(tokens)):
-            if visited[i]:
-                continue
-            if tokens[i] in OPERATORS:
-                while visited[rightOp] and rightOp >= 0:
-                    rightOp -= 1
-                
-                leftOp = rightOp - 1
-                while visited[leftOp] and leftOp >= 0:
-                    leftOp -= 1
-
-                result = self.singleOperation(tokens[leftOp], tokens[rightOp], tokens[i])
-                visited[rightOp] = 1
-                visited[i] = 1
-                tokens[leftOp] = str(result)
-
+        for token in tokens:
+            if token in OPERATORS:
+                rightOperand = operandsStack.pop()
+                leftOperand = operandsStack.pop()
+                result = self.singleOperation(leftOperand, rightOperand, token)
+                operandsStack.append(result)
             else:
-                rightOp = i
-                leftOp = i - 1
+                operandsStack.append(token)
 
-        return tokens[leftOp]
+        return result
 
     
     def singleOperation(self, leftOperand, rightOperand, operation):
