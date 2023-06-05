@@ -10,37 +10,33 @@ class Trie:
     def __init__(self):
         self.root = TrieNode()
 
-    def insert(self, word: str) -> None:
+    def insert(self, word):
         currentNode = self.root
-        for char in word:
-            if char in currentNode.children:
-                currentNode = currentNode.children[char]
-            else:
-                currentNode.children[char] = TrieNode()
-                currentNode = currentNode.children[char]
+        for letter in word:
+
+            if letter not in currentNode.children:
+                currentNode.children[letter] = TrieNode()
+            currentNode = currentNode.children[letter]
 
         currentNode.isEndOfWord = True
-
-    def search(self, word: str) -> bool:
-        currentNode = self.root
-        for char in word:
-            if char in currentNode.children:
-                currentNode = currentNode.children[char]
-            else:
-                return False
         
-        return currentNode.isEndOfWord 
-
-    def startsWith(self, prefix: str) -> bool:
+    def search(self, word):
         currentNode = self.root
-        for char in prefix:
-            if char in currentNode.children:
-                currentNode = currentNode.children[char]
-            else:
+        for letter in word:
+            if letter not in currentNode.children:
                 return False
-        
+            currentNode = currentNode.children[letter]
+
+        return currentNode.isEndOfWord
+    
+    def startsWith(self, prefix):
+        currentNode = self.root
+        for letter in prefix:
+            if letter not in currentNode.children:
+                return False
+            currentNode = currentNode.children[letter]
+            
         return True
-
 
 # Your Trie object will be instantiated and called as such:
 # obj = Trie()
@@ -57,3 +53,5 @@ responseList.append(trie.search("app") )
 responseList.append(trie.startsWith("app"))
 responseList.append(trie.insert("app"))
 responseList.append(trie.search("app"))
+
+print(responseList)
