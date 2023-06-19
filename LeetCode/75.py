@@ -18,7 +18,7 @@ class Solution:
         for i in range(colors_dict["0"] + colors_dict["1"], colors_dict["0"] + colors_dict["1"] + colors_dict["2"]):
             nums[i] = 2
 
-        print(nums)
+        # print(nums)
         # for i in range(len(nums))
         """
         Do not return anything, modify nums in-place instead.
