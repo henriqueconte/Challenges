@@ -13,8 +13,6 @@ class Solution:
                 new_dp.add(j)
                 new_dp.add(nums[i] + j)
             dp = new_dp
-
-        return target in dp
     
 solution = Solution()
 # print(solution.canPartition([1,5,11,5]))
