@@ -27,7 +27,3 @@ print(solution.longestPalindrome("baaab"))
 print(solution.longestPalindrome("asdfbaaabdfd"))
 print(solution.longestPalindrome("cbbd"))
 print(solution.longestPalindrome("babad"))
-
-# Solution: 
-# Start from center and increase palindrome until it finds different characters
-# Then, divide and conquer to find the biggest palindrome on the left and on the right side
